@@ -1,0 +1,27 @@
+name: C++ Build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install g++
+      run: sudo apt-get update && sudo apt-get install -y g++
+
+    - name: Compile main.cpp
+      run: g++ main.cpp -o main
+
+    - name: List files (optional)
+      run: ls -la
+
+    # Опционально: запустить собранную программу
+    - name: Run the program (optional)
+      run: ./main
